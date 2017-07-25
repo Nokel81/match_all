@@ -48,26 +48,22 @@
 #[macro_export]
 macro_rules! match_all {
    ($val:expr, IfNoMatch => $c:expr, $($($p:pat)|+ => $b:expr),+) => {{
-        unsafe {
-            let val = $val;
-            let mut matched = false;
-            let mut ret = mem::uninitialized();
-            $(
-                loop {
-                    $(
-                        if let $p = val {
-                            matched = true;
-                            ret = $b;
-                            break
-                        }
-                    )+
-                    break
-                }
-            )+
-            if !matched {
-                ret = $c;
+        let val = $val;
+        let mut matched = false;
+        $(
+            loop {
+                $(
+                    if let $p = val {
+                        matched = true;
+                        $b;
+                        break
+                    }
+                )+
+                break
             }
-            ret
+        )+
+        if !matched {
+            $c;
         }
    }};
    ($val:expr, $($($p:pat)|+ => $b:expr),+) => {{
