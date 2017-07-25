@@ -2,5 +2,7 @@
 name = "match_all"
 version = "0.1.0"
 authors = ["Sebastian Malton <snmalton@edu.uwaterloo.ca>", "Josh Leverette <coder543@gmail.com>"]
+description = "This crate provides a match_all! macro for matching multiple patterns"
+licence = "MIT"
 
 [dependencies]
