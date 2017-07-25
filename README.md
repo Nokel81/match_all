@@ -42,7 +42,7 @@ Howdy
 let value = Some(20);
 match_all!{ value,
     IfNoMatch => println!("No Match"),
-    0..4 => println!("Between 0 and 4")
+    0...4 => println!("0 through 4")
 };
 ```
 
