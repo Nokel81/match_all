@@ -19,3 +19,29 @@ match_all!{
 This can be used to set values of a variable but the following must hold:
 
 1. The `IfNoMatch` block must be present
+
+Examples:
+
+1.
+```rust
+    let value = Some(4);
+
+    match_all!{ value,
+        None => println!("Hi"),
+        Some(3) | Some(4) => println!("Hello"),
+        Some(4) | Some(5) => println!("Howdy")
+    }
+
+    > Hello
+    > Howdy
+```
+2.
+```rust
+    let x = match_all!{ some_fn(),
+        IfNoMatch => {
+            println!("No Match");
+            false
+        }
+        0..4 => true
+    };
+```
