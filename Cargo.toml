@@ -1,9 +1,10 @@
 [package]
 name = "match_all"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Sebastian Malton <snmalton@edu.uwaterloo.ca>", "Josh Leverette <coder543@gmail.com>"]
 description = "This crate provides a match_all! macro for matching multiple patterns"
 license = "MIT"
 repository = "https://github.com/nokel81/match_all"
+readme = "./README.md"
 
 [dependencies]
