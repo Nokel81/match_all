@@ -1,0 +1,6 @@
+[package]
+name = "match_all"
+version = "0.1.0"
+authors = ["Sebastian Malton <snmalton@edu.uwaterloo.ca>", "Josh Leverette <coder543@gmail.com>"]
+
+[dependencies]
