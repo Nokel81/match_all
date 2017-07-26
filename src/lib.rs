@@ -106,12 +106,13 @@
 #[macro_export]
 macro_rules! match_all {
    ($val:expr, IfNoMatch => $c:expr, $($($p:pat)|+ => $b:expr),+) => {{
+        let val = $val;
         let mut matched = false;
         $(
             loop {
                 $(
                     #[allow(unreachable_patterns)]
-                    match $val {
+                    match val {
                         $p => {
                             $b;
                             matched = true;
@@ -128,11 +129,12 @@ macro_rules! match_all {
         }
    }};
    ($val:expr, $($($p:pat)|+ => $b:expr),+) => {{
+        let val = $val;
         $(
             loop {
                 $(
                     #[allow(unreachable_patterns)]
-                    match $val {
+                    match val {
                         $p => {
                             $b;
                             break;
@@ -185,11 +187,12 @@ macro_rules! for_match_all {
    ($var:ident in $val:expr, IfNoMatch => $c:expr, $($($p:pat)|+ => $b:expr),+) => {{
     for $var in $val.iter() {
         let mut matched = false;
+        let var = *$var;
         $(
             loop {
                 $(
                     #[allow(unreachable_patterns)]
-                    match *$val {
+                    match var {
                         $p => {
                             $b;
                             matched = true;
@@ -208,11 +211,12 @@ macro_rules! for_match_all {
    }};
    ($var:ident in $val:expr, $($($p:pat)|+ => $b:expr),+) => {{
      for $var in $val.iter() {
+        let var = *$var;
         $(
             loop {
                 $(
                     #[allow(unreachable_patterns)]
-                    match *$var {
+                    match var {
                         $p => {
                             $b;
                             break;
@@ -263,11 +267,12 @@ macro_rules! for_match_all {
 macro_rules! for_match {
    ($var:ident in $val:expr, $($($p:pat)|+ => $b:expr),+) => {{
     for $var in $val.iter() {
+        let var = *$var;
         loop {
             $(
                 $(
                     #[allow(unreachable_patterns)]
-                    match *$var {
+                    match var {
                         $p => {
                             $b;
                             break;
