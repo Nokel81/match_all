@@ -1,3 +1,9 @@
+//! This crate provides several macros of augmenting
+//!
+//! * `match_all` - This provides a side-effect purposed match statement that allows all matching patterns to execute their associated expressions
+//! * `for_match_all` - This provides a side-effect purposed match statement that allows all matching patterns to execute their associated expressions while looping through a `.iter()` value
+//! * `for_match` - This provides a side-effect purposed match statement that allows all matching patterns to execute their associated expressions
+
 /// # match_all
 /// Provides the `match_all!` macro for rust
 ///
