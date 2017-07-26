@@ -109,19 +109,13 @@ macro_rules! match_all {
         let val = $val;
         let mut matched = false;
         $(
-            loop {
-                $(
-                    #[allow(unreachable_patterns)]
-                    match val {
-                        $p => {
-                            $b;
-                            matched = true;
-                            break;
-                        },
-                        _ => ()
-                    }
-                )+
-                break
+            #[allow(unreachable_patterns)]
+            match val {
+                $($p)|+ => {
+                    $b;
+                    matched = true;
+                },
+                _ => (),
             }
         )+
         if !matched {
@@ -131,18 +125,10 @@ macro_rules! match_all {
    ($val:expr, $($($p:pat)|+ => $b:expr),+) => {{
         let val = $val;
         $(
-            loop {
-                $(
-                    #[allow(unreachable_patterns)]
-                    match val {
-                        $p => {
-                            $b;
-                            break;
-                        },
-                        _ => ()
-                    }
-                )+
-                break
+            #[allow(unreachable_patterns)]
+            match val {
+                $($p)|+ => { $b; },
+                _ => (),
             }
         )+
    }};
@@ -189,19 +175,13 @@ macro_rules! for_match_all {
         let mut matched = false;
         let var = *$var;
         $(
-            loop {
-                $(
-                    #[allow(unreachable_patterns)]
-                    match var {
-                        $p => {
-                            $b;
-                            matched = true;
-                            break;
-                        },
-                        _ => ()
-                    }
-                )+
-                break
+            #[allow(unreachable_patterns)]
+            match var {
+                $($p)|+ => {
+                    $b;
+                    matched = true;
+                },
+                _ => (),
             }
         )+
         if !matched {
@@ -213,18 +193,10 @@ macro_rules! for_match_all {
      for $var in $val.iter() {
         let var = *$var;
         $(
-            loop {
-                $(
-                    #[allow(unreachable_patterns)]
-                    match var {
-                        $p => {
-                            $b;
-                            break;
-                        },
-                        _ => ()
-                    }
-                )+
-                break
+            #[allow(unreachable_patterns)]
+            match var {
+                $($p)|+ => { $b; },
+                _ => (),
             }
         )+
     }
@@ -268,20 +240,10 @@ macro_rules! for_match {
    ($var:ident in $val:expr, $($($p:pat)|+ => $b:expr),+) => {{
     for $var in $val.iter() {
         let var = *$var;
-        loop {
-            $(
-                $(
-                    #[allow(unreachable_patterns)]
-                    match var {
-                        $p => {
-                            $b;
-                            break;
-                        },
-                        _ => ()
-                    }
-                )+
-            )+
-            break
+        #[allow(unreachable_patterns)]
+        match var {
+            $($($p)|+ => { $b; }),+
+            _ => (),
         }
     }
    }};

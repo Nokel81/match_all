@@ -1,6 +1,6 @@
 [package]
 name = "match_all"
-version = "0.2.4"
+version = "0.2.5"
 authors = ["Sebastian Malton <sebastian@malton.name>", "Josh Leverette <coder543@gmail.com>"]
 description = "This crate provides a match_all! macro for matching multiple patterns"
 license = "MIT"
